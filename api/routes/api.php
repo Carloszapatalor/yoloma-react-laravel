@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\TerapeutaController;
+use App\Models\Terapeuta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+
+Route::controller(TerapeutaController::class)->group(function(){
+
+    Route::get ('/terapeutas','index');
+    Route::post ('/terapeuta','store');
+    Route::get ('/terapeuta/{id}','show');
+    Route::put ('/terapeuta/{id}','update');
+    Route::delete ('/terapeuta/{id}','destroy');
+
+
+    
+
 });
