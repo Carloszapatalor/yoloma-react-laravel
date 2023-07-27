@@ -14,8 +14,8 @@ function App() {
         <Routes>
 
           <Route path='/' element={<MostrarTerapeutas/>} />
-         {/* <Route path='/crear' element={<CrearTerapeuta/>} /> */}
-         {/* <Route path='/editar/:id' element={<EditarTerapeuta/>} /> */}
+          <Route path='/crear' element={<CrearTerapeuta/>} />
+          <Route path='/editar/:id' element={<EditarTerapeuta/>} />
           
 
         </Routes>

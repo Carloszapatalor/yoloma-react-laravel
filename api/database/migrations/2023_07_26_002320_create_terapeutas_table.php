@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string ('apellido_materno');
             $table->string ('especialidad');
             $table->string ('correo');
-            $table->integer ('telefono');
+            $table->string ('telefono');
             $table->string ('matricula');
 
             $table->timestamps();
