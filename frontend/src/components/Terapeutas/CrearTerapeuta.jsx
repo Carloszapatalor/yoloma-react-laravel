@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const endpoint = 'http://localhost:8000/api/terapeuta'
 
 
-function CrearTerapetura() {
+function CrearTerapeuta() {
 
     const [nombre, setNombre] = useState('')
     const [apellido_paterno, setApelldio_Paterno] = useState('')
@@ -116,4 +116,4 @@ function CrearTerapetura() {
 }
 
 
-export default CrearTerapetura
+export default CrearTerapeuta
