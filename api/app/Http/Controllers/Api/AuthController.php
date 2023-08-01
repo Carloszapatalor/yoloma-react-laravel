@@ -20,7 +20,7 @@ class AuthController extends Controller
 
       //alta del usuario
       $user = User::create([
-        'matricula' => $request9('matricula'),
+        'matricula' => $request('matricula'),
         'name' => $request('name'),
         'email' => $request('email'),
         'password' => $request('password')
