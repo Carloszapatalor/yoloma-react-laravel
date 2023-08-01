@@ -29,7 +29,7 @@ function EditarTerapeuta() {
             matricula: matricula
         })
 
-        navegar('/')
+        navegar('/terapeuta')
 
     }
 

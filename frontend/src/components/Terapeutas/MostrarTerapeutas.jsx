@@ -29,7 +29,7 @@ const MostrarTerapeutas = () =>{
         <div>
            
             <div className="d-grid grap-2">
-              <Link to="/crear" className="btn btn-success btn-lg mt-2 mb-2 text-white">Crear</Link>
+              <Link to={`/terapeuta/crear`} className="btn btn-success btn-lg mt-2 mb-2 text-white">Crear</Link>
             </div>
 
             <table className="table table-striped">
