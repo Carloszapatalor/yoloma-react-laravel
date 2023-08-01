@@ -36,3 +36,62 @@
     transform: rotate(360deg);
   }
 }
+
+/* src/styles/Home.css */
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-image {
+  background-image: url(''); /* Asegúrate de que la ruta sea correcta */
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  text-align: center;
+  color: white; /* Color del texto */
+}
+
+/* Estilos adicionales para los botones */
+.btn-primary {
+  margin-right: 10px;
+}
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Establecer estilos para el componente Home */
+.home-container {
+  background-image: url('./components/images/Inicio.png'); /* Ruta relativa desde la carpeta public */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(128, 129, 202); /* Color del texto */
+}
+
+/* Establecer el tamaño máximo para la imagen de fondo */
+.home-container {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Estilos adicionales para los botones */
+.btn-primary {
+  margin-right: 10px;
+}
+
+
+
+
+
