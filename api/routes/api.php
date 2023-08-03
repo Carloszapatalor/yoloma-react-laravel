@@ -5,6 +5,9 @@ use App\Http\Controllers\Api\TerapeutaController;
 use App\Models\Terapeuta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\DepartamentoController;
+use App\Http\Controllers\Api\EmpleadoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-}); */
+}); 
 
 Route::post ('register', [AuthController::class, 'register']);
 
@@ -34,3 +37,15 @@ Route::controller(TerapeutaController::class)->group(function(){
     Route::delete ('/terapeuta/{id}','destroy');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Rutas de Empleados y Departamentos
+|--------------------------------------------------------------------------
+*/
+
+Route::resource('departamentos', DepartamentoController::class);
+Route::resource('empleados',EmpleadoController::class);
+Route::get('empleadosall',[EmpleadoController::class,'all']);
+Route::get('empleadosxdepartamento',[EmpleadoController::class,'EmpleadosxDepartamento']);
+
