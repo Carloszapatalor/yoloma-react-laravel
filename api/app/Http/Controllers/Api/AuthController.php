@@ -4,51 +4,75 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use PhpParser\Parser\Tokens;
 
 class AuthController extends Controller
 {
-    public function register (Request $request){
+   public function create(Request $request){
+    $reglas =[
+      'name' => 'required | string | max:100',
+      'email' => 'required | string | email | max:100 | unique:users',
+      'password' => 'required | string | min:8'
+    ];
 
-      //Validacion de datos
-      $request -> validate([
-        'matricula' => 'required',
-        'name' => 'required',
-        'email' => 'required | email | unique:users',
-        'password' => 'required'
-      ]);
-
-      //alta del usuario
-      $user = User::create([
-        'matricula' => $request('matricula'),
-        'name' => $request('name'),
-        'email' => $request('email'),
-        'password' => $request('password')
-      ]);
-
-      $token = $user->createToken('auth_token')->plainTextToken;
-
-      return response()-> json([
-        'access_token' => $token,
-        'token_type' =>'Bearer'
-      ]);
-
+    $validacion = Validator::make($request->input(),$reglas);
+    if ($validacion->fails()){
+      return response()->json([
+        'estado' => false,
+        'errores' =>$validacion->errors()->all()
+      ],400);
     }
+    $user = User::create([
+      'name' => $request->name,'email' => $request->email,
+      'password' => Hash::make($request->password)
+    ]);
 
-    public function login (Request $request){
-        
-    }
+    return response()->json([
+      'estado' => true,
+      'mensaje' =>'Usuario creado satisfactoriamente',
+      'token' => $user->createToken('API TOKEN')->plainTextToken
+    ],200);
 
-    public function userProfile (Request $request){
-        
+   }
+
+   public function login(Request $request){
+    $reglas =[
+      'email' => 'required | string | email | max:100',
+      'password' => 'required | string '
+    ];
+    $validacion = Validator::make($request->input(),$reglas);
+    if ($validacion->fails()){
+      return response()->json([
+        'estado' => false,
+        'errores' => $validacion->errors()->all()
+      ],400);
     }
+    if(!Auth::attempt($request->only('email','password'))){
+      return response()->json([
+        'estado' => false,
+        'errores' => ['No autorizado']
+      ],401);
+    }
+    $user = User::where('email',$request->email)->first();
+    return response ()->json([
+      'estado' => true,
+      'mensaje'=> 'Inicio sesion satisfactoriamente',
+      'dato' => $user,
+      'token' => $user->createToken('API TOKEN')->plainTextToken
+    ],200);
+  }
 
     public function logout (){
-        
-    }
+      
+      auth()-> user() -> tokens() -> delete();
+      return response ()->json([
+        'estado' => true,
+        'mensaje ' => 'Se cerro sesion satisfacotriamente',
+      
+      ],200);
 
-    public function allUsers (Request $request){
-        
-    }
-    
-}
+    }}

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DepartamentoController;
 use App\Http\Controllers\Api\EmpleadoController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,24 +20,20 @@ use App\Http\Controllers\Api\EmpleadoController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 }); 
+ */
+/*
+|--------------------------------------------------------------------------
+| Rutas de proteccion 
+|--------------------------------------------------------------------------
+*/
 
-Route::post ('register', [AuthController::class, 'register']);
+Route::post('auth/register',[AuthController::class,'create']);
+Route::post('auth/login',[AuthController::class,'login']);
 
-
-
-Route::controller(TerapeutaController::class)->group(function(){
-
-    Route::get ('/terapeutas','index');
-    Route::post ('/terapeuta','store');
-    Route::get ('/terapeuta/{id}','show');
-    Route::put ('/terapeuta/{id}','update');
-    Route::delete ('/terapeuta/{id}','destroy');
-
-});
-
+Route::middleware(['auth:sanctum']) ->group(function(){
 /*
 |--------------------------------------------------------------------------
 | Rutas de Empleados y Departamentos
@@ -48,4 +44,19 @@ Route::resource('departamentos', DepartamentoController::class);
 Route::resource('empleados',EmpleadoController::class);
 Route::get('empleadosall',[EmpleadoController::class,'all']);
 Route::get('empleadosxdepartamento',[EmpleadoController::class,'EmpleadosxDepartamento']);
+Route::get('auth/logout', [AuthController::class, 'logout']);
 
+/*
+|--------------------------------------------------------------------------
+| Rutas de Terapeutas
+|--------------------------------------------------------------------------
+*/
+Route::controller(TerapeutaController::class)->group(function(){
+    Route::get ('/terapeutas','index');
+    Route::post ('/terapeuta','store');
+    Route::get ('/terapeuta/{id}','show');
+    Route::put ('/terapeuta/{id}','update');
+    Route::delete ('/terapeuta/{id}','destroy');
+});
+
+});

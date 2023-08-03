@@ -14,7 +14,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::select('empleados.*', 'departamentos.nombre as departamento')
-        ->join('departamentos','departamento_id','=','empleados.departamento_id')
+        ->join('departamentos','departamentos.id','=','empleados.departamento_id')
         ->paginate(10);
         return response()->json($empleados);
     }
@@ -32,15 +32,15 @@ class EmpleadoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if($validacion->fails()){
             return response()->json([
-                'status'=>false,
-                'errors'=>$validacion->errors()->all()
+                'estado'=>false,
+                'errores'=>$validacion->errors()->all()
             ],400);
         }
             $empleado = new Empleado($request->input());
             $empleado->save();
             return response()->json([
-                'status' => true,
-                'message' => 'Se creo satisfactoriamente'
+                'estado' => true,
+                'mensaje' => 'Se creo satisfactoriamente'
             ],200);
         
 
@@ -49,7 +49,7 @@ class EmpleadoController extends Controller
    
     public function show(Empleado $empleado)
     {
-        return response()->json(['status'=>true, 'data'=>$empleado]);
+        return response()->json(['estado'=>true, 'dato'=>$empleado]);
     }
 
    
@@ -65,8 +65,8 @@ class EmpleadoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if($validacion->fails()){
             return response()->json([
-                'status'=>false,
-                'errors'=>$validacion->errors()->all()
+                'estadp'=>false,
+                'errores'=>$validacion->errors()->all()
             ],400);
         }
 
@@ -85,14 +85,14 @@ class EmpleadoController extends Controller
         return response()->json([
             'estado' => true,
             'mensaje' =>'Empleado eliminado satisfactoriamente'
-        ]);
+        ],200);
     }
 
     public function EmpleadosxDepartamento(){
 
         $empleados = Empleado::select(DB::raw('count(empleados.id) as count, departamentos.nombre'))
         ->rightjoin('departamentos', 'departamentos.id','=','empleados.departamento_id')
-        ->groupBy('departamentos.nombre')->get();
+        ->groupBy('departamentos.nombre')->get(); 
         
         return response()->json($empleados);
         
@@ -100,9 +100,9 @@ class EmpleadoController extends Controller
 
     public function all(){
         $empleados =Empleado::select('empleados.*', 'departamentos.nombre as departamento')
-        ->join('departamentos', 'departamento_id','=','empleados.departamento_id')
+        ->join('departamentos', 'departamentos.id','=','empleados.departamento_id')
         ->get();
-
+        
         return response()->json($empleados);
     }
 

@@ -20,19 +20,19 @@ class DepartamentoController extends Controller
    
     public function store(Request $request)
     {
-        $regla =['nombre' => 'required|string|min:1|max:100'];
+        $regla =['nombre' => 'required| string | min:1 | max:100 | unique:departamentos'];
         $validacion = Validator::make($request->input(),$regla);
         if ($validacion->fails()){
             return response()->json([
-                'status' => false,
-                'errors' => $validacion->errors()->all()
+                'estado' => false,
+                'errores' => $validacion->errors()->all()
             ],400);
         }
         $departamento = new Departamento($request->input());
         $departamento->save();
         return response()->json([
-            'status' => true,
-            'message' => 'Se creo satisfactoriamente'
+            'estado' => true,
+            'mensaje' => 'Se creo satisfactoriamente'
         ],200);
 
 
@@ -52,14 +52,14 @@ class DepartamentoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if ($validacion->fails()){
             return response()->json([
-                'status' => false,
-                'errors' => $validacion->errors()->all()
+                'estado' => false,
+                'errores' => $validacion->errors()->all()
             ],400);
         }
         $departamento->update($request->input());
         return response()->json([
-            'status' => true,
-            'message' => 'Se actualizo satisfactoriamente'
+            'estado' => true,
+            'mensaje' => 'Se actualizo satisfactoriamente'
         ],200);
 
         
