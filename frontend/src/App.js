@@ -17,7 +17,7 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-        <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Home/>} />
           <Route path='/terapeuta' element={<MostrarTerapeutas/>} />
           <Route path='/terapeuta/crear' element={<CrearTerapeuta/>} />
           <Route path='/terapeuta/editar/:id' element={<EditarTerapeuta/>} />

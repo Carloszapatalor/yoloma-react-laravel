@@ -1,18 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../App.css';
+import '../../App.css'; 
+import { Link, Route } from 'react-router-dom';
 
 const Home = () => {
-      return (
-    <div className="container">
-      <header className="mt-4">
-        <h1>Bienvenido al expediente clínico Yoloma</h1>
-      </header>
-      <main className="mt-4">
-        <button className="btn btn-primary">Haz clic aquí</button>
-      </main>
+
+
+  return (
+    <div className="home-container background-image"> {/* Aplicamos la clase background-image directamente al componente Home */}
+      <h1>Bienvenido</h1>
+      <div className="mt-4">
+        <Link to={'/terapeuta'} className='btn btn-primary'>Iniciar Sesión</Link>
+      </div>
     </div>
-      )
+  );
 };
 
 export default Home;

@@ -29,7 +29,7 @@ function CrearTerapeuta() {
             correo: correo, 
             telefono: telefono, 
             matricula: matricula})
-        navegar('/')
+        navegar('/terapeuta')
     }
   return (
     <div>
