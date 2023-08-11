@@ -6,7 +6,7 @@ export const ProtecteRoutes = ({children}) => {
     const authUser = storage.get ('authUser');
     if(!authUser){
 
-        return <Navigate to={'/login'}/>
+        return <Navigate to='/'/>
     }
     return <Outlet/>
 }
