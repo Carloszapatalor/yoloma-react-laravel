@@ -43,7 +43,7 @@ const Login = () => {
                 className='form-control' placeholder='Correo' required='required' handleChange = { (e) => setPassword(e.target.value)} />
                 <div className='d-grid col-10 mx-auto'>
                   <button className='btn btn-primary'>
-                    <i className='fa-solid fa-door-open'></i> Iniciar Sesion
+                    <i className='fa-solid fa-door-open'></i> Ingresar
                   </button>
                 </div>
               </form>
