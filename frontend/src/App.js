@@ -1,5 +1,4 @@
-//import logo from './logo.svg';
-import './App.css';
+
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
@@ -14,7 +13,7 @@ import ProtecteRoutes from "./components/ProtecteRoutes"
 import EditarTerapeuta from './components/Terapeutas/EditarTerapeuta';
 import CrearTerapeuta from './components/Terapeutas/CrearTerapeuta';
 import MostrarTerapeutas from './components/Terapeutas/MostrarTerapeutas';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 function App() {
   return (
@@ -22,11 +21,11 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-        <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Home/>} />
           <Route path='/terapeuta' element={<MostrarTerapeutas/>} />
           <Route path='/terapeuta/crear' element={<CrearTerapeuta/>} />
           <Route path='/terapeuta/editar/:id' element={<EditarTerapeuta/>} />
-        </Route>
+      
           
         </Routes>
       </BrowserRouter>
