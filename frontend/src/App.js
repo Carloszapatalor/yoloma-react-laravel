@@ -1,15 +1,20 @@
 //import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav';
 import  Home  from "./components/Home/Home";
-
-//Componentes Terapeutas
-import MostrarTerapeutas from './components/Terapeutas/MostrarTerapeutas';
+import CrearDepartamentos from "./components/Views/Departamentos/Create";
+import EditarDepartamentos from "./components/Views/Departamentos/Edit";
+import Departamentos from "./components/Views/Departamentos/index";
+import Empleados from "./components/Views/Empleados/Index";
+import Login from "./components/Views/Login";
+import Register from "./components/Views/Register";
+import ProtecteRoutes from "./components/ProtecteRoutes"
 import EditarTerapeuta from './components/Terapeutas/EditarTerapeuta';
 import CrearTerapeuta from './components/Terapeutas/CrearTerapeuta';
-
-//Componentes Pacientes
+import MostrarTerapeutas from './components/Terapeutas/MostrarTerapeutas';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   return (
@@ -17,12 +22,12 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Home/>} />
           <Route path='/terapeuta' element={<MostrarTerapeutas/>} />
           <Route path='/terapeuta/crear' element={<CrearTerapeuta/>} />
           <Route path='/terapeuta/editar/:id' element={<EditarTerapeuta/>} />
+        </Route>
           
-
         </Routes>
       </BrowserRouter>
      
