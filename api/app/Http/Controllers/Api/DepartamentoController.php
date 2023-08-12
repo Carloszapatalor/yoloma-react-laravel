@@ -24,15 +24,15 @@ class DepartamentoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if ($validacion->fails()){
             return response()->json([
-                'estado' => false,
-                'errores' => $validacion->errors()->all()
+                'status' => false,
+                'errors' => $validacion->errors()->all()
             ],400);
         }
         $departamento = new Departamento($request->input());
         $departamento->save();
         return response()->json([
-            'estado' => true,
-            'mensaje' => 'Se creo satisfactoriamente'
+            'status' => true,
+            'message' => 'Se creo satisfactoriamente'
         ],200);
 
 
@@ -52,14 +52,14 @@ class DepartamentoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if ($validacion->fails()){
             return response()->json([
-                'estado' => false,
-                'errores' => $validacion->errors()->all()
+                'status' => false,
+                'errors' => $validacion->errors()->all()
             ],400);
         }
         $departamento->update($request->input());
         return response()->json([
-            'estado' => true,
-            'mensaje' => 'Se actualizo satisfactoriamente'
+            'status' => true,
+            'message' => 'Se actualizo satisfactoriamente'
         ],200);
 
         
@@ -70,8 +70,8 @@ class DepartamentoController extends Controller
     {
         $departamento -> delete();
         return response()->json([
-            'estado' => true,
-            'mensaje' => 'Departamento Eliminado satisfactoriamente'
+            'status' => true,
+            'message' => 'Departamento Eliminado satisfactoriamente'
         ],200);
     }
 }

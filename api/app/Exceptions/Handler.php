@@ -27,15 +27,15 @@ class Handler extends ExceptionHandler
             //
             if($request->is('api/departamentos/*')){
                 return response() -> json([
-                    'estado' => false,
-                    'mensaje' =>'La ID seleccionada no existe'
+                    'status' => false,
+                    'message' =>'La ID seleccionada no existe'
                 ],404);
             }
 
             if($request->is('api/empleados/*')){
                 return response() -> json([
-                    'estado' => false,
-                    'mensaje' =>'La ID seleccionada no existe'
+                    'status' => false,
+                    'message' =>'La ID seleccionada no existe'
                 ],404);
             }
         });

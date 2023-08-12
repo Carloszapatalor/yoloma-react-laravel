@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { sendRequest } from '../function';
 import DivInput from '../DivInput';
 import storage from '../../Storage/storage';
@@ -19,7 +19,7 @@ const Login = () => {
     await csrf();
     const form ={email:email, password:password};
     const res= await sendRequest ('POST', form, 'api/auth/login', '', false);
-    if (res.status == true){
+    if (res === true){
       storage.set('authToken', res.token);
       storage.set('authUser', res.data);
       got('/Departamentos');

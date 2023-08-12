@@ -32,15 +32,15 @@ class EmpleadoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if($validacion->fails()){
             return response()->json([
-                'estado'=>false,
-                'errores'=>$validacion->errors()->all()
+                'status'=>false,
+                'errors'=>$validacion->errors()->all()
             ],400);
         }
             $empleado = new Empleado($request->input());
             $empleado->save();
             return response()->json([
-                'estado' => true,
-                'mensaje' => 'Se creo satisfactoriamente'
+                'status' => true,
+                'message' => 'Se creo satisfactoriamente'
             ],200);
         
 
@@ -49,7 +49,7 @@ class EmpleadoController extends Controller
    
     public function show(Empleado $empleado)
     {
-        return response()->json(['estado'=>true, 'dato'=>$empleado]);
+        return response()->json(['status'=>true, 'data'=>$empleado]);
     }
 
    
@@ -65,15 +65,15 @@ class EmpleadoController extends Controller
         $validacion = Validator::make($request->input(),$regla);
         if($validacion->fails()){
             return response()->json([
-                'estadp'=>false,
-                'errores'=>$validacion->errors()->all()
+                'status'=>false,
+                'errors'=>$validacion->errors()->all()
             ],400);
         }
 
             $empleado-> update($request->input());
             return response()->json([
-                'estado'=> true,
-                'mensaje'=>'Empleado actualizado satisfactoriamente'
+                'status'=> true,
+                'message'=>'Empleado actualizado satisfactoriamente'
             ],200);
         
     }
@@ -83,8 +83,8 @@ class EmpleadoController extends Controller
     {
         $empleado->delete();
         return response()->json([
-            'estado' => true,
-            'mensaje' =>'Empleado eliminado satisfactoriamente'
+            'status' => true,
+            'message' =>'Empleado eliminado satisfactoriamente'
         ],200);
     }
 

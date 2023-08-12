@@ -27,10 +27,10 @@ export const sendRequest = async(method, params,url,redir='',token=true)=>{
         }, 2000)
         }).catch(errors => {
             let desc = '';
-            res = errors.response.data;
-            errors.response.data.errors.map(e => {
-                desc = desc + ' ' + e;
-            });
+            if (errors.response && errors.response.data && errors.response.data.errors) {
+                desc = errors.response.data.errors.map(e => ' ' + e).join('')
+                show_alert(desc,'error')
+            }
         })
     return res;
 

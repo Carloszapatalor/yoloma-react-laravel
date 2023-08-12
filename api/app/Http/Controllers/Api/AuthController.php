@@ -22,8 +22,8 @@ class AuthController extends Controller
     $validacion = Validator::make($request->input(),$reglas);
     if ($validacion->fails()){
       return response()->json([
-        'estado' => false,
-        'errores' =>$validacion->errors()->all()
+        'status' => false,
+        'errors' =>$validacion->errors()->all()
       ],400);
     }
     $user = User::create([
@@ -32,8 +32,8 @@ class AuthController extends Controller
     ]);
 
     return response()->json([
-      'estado' => true,
-      'mensaje' =>'Usuario creado satisfactoriamente',
+      'status' => true,
+      'message' =>'Usuario creado satisfactoriamente',
       'token' => $user->createToken('API TOKEN')->plainTextToken
     ],200);
 
@@ -47,21 +47,21 @@ class AuthController extends Controller
     $validacion = Validator::make($request->input(),$reglas);
     if ($validacion->fails()){
       return response()->json([
-        'estado' => false,
-        'errores' => $validacion->errors()->all()
+        'status' => false,
+        'errors' => $validacion->errors()->all()
       ],400);
     }
     if(!Auth::attempt($request->only('email','password'))){
       return response()->json([
-        'estado' => false,
-        'errores' => ['No autorizado']
+        'status' => false,
+        'errors' => ['No autorizado']
       ],401);
     }
     $user = User::where('email',$request->email)->first();
     return response ()->json([
-      'estado' => true,
-      'mensaje'=> 'Inicio sesion satisfactoriamente',
-      'dato' => $user,
+      'status' => true,
+      'message'=> 'Inicio sesion satisfactoriamente',
+      'data' => $user,
       'token' => $user->createToken('API TOKEN')->plainTextToken
     ],200);
   }
@@ -70,8 +70,8 @@ class AuthController extends Controller
       
       auth()-> user() -> tokens() -> delete();
       return response ()->json([
-        'estado' => true,
-        'mensaje ' => 'Se cerro sesion satisfacotriamente',
+        'status' => true,
+        'message ' => 'Se cerro sesion satisfacotriamente',
       
       ],200);
 
