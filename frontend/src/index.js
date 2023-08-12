@@ -9,7 +9,7 @@ import './index.css';
 
 window.axios = axios
 
-window.axios.defaults.baseURL = 'http://localhost/api/public'
+window.axios.defaults.baseURL = 'http://localhost/api/'
 window.axios.defaults.headers.common['Accept'] = 'application/json'
 window.axios.defaults.headers.common['Content-Type'] = 'application/json'
 window.axios.defaults.headers.common['X-Requseted-With'] = 'XMLHttpRequest'

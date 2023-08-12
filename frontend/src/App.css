@@ -47,7 +47,7 @@
 }
 
 .background-image {
-  background-image: url(''); /* Asegúrate de que la ruta sea correcta */
+  background-image: url('./components/images/Inicio.png'); /* Asegúrate de que la ruta sea correcta */
   background-size: cover;
   background-position: center;
   padding: 20px;

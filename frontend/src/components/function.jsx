@@ -13,18 +13,24 @@ export const sendRequest = async(method, params,url,redir='',token=true)=>{
         const authToken = storage.get('authToken');
          axios.defaults.headers.common['Authorization'] = 'Bearer '+authToken;
     }
-    let res;
-
-    await axios ({ method:method, url:url, data:params}).then(
-        response =>{
-            res = response.data,
-            (method != 'GET') ? show_alert(response.data.message,'success'):'',
-            setTimeout( ()=>
-            (redir !=='') ? window.location.href = redir:'',2000)
-        }).catch ( (errors) =>{
-            let desc='';
-            res= errors.response.data,
-            errors.response.data.errors.map ( (e) => {desc = desc + ' '+e})
+    let res
+    await axios({ method: method, url: url, data: params })
+    .then(response => {
+        res = response.data;
+        if (method !== 'GET') {
+            show_alert(response.data.message, 'success');
+        }
+        setTimeout(() => {
+            if (redir !== '') {
+                window.location.href = redir;
+            }
+        }, 2000)
+        }).catch(errors => {
+            let desc = '';
+            res = errors.response.data;
+            errors.response.data.errors.map(e => {
+                desc = desc + ' ' + e;
+            });
         })
     return res;
 
