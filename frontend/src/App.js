@@ -21,10 +21,11 @@ function App() {
     <div className="App">
       
       <BrowserRouter>
+      <Nav />
       <Routes>
       <Route path='/' element={<Home/>} />
       </Routes>
-      <Nav />
+      
         <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />

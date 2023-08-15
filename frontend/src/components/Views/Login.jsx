@@ -22,7 +22,7 @@ const Login = () => {
     if (res === true){
       storage.set('authToken', res.token);
       storage.set('authUser', res.data);
-      got('/Departamentos');
+      got('/');
     }
   }
   return (

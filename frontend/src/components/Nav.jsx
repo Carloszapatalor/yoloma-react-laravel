@@ -16,7 +16,7 @@ const Nav = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-white bg-info'>
       <div className="container-fluid">
-        <a className="navbar-brand">YOLOMA</a>
+        <a href='{#}' className="navbar-brand">YOLOMA</a>
         <button className='navbar-toggler' type='button' data-bs-toggle='collapse'
         data-bs-target='#nav' aria-controls="navbarSupportedContent">
           <span className='navbar-toggler-icon'></span>
